@@ -53,7 +53,7 @@ public class JpaPersistenceProvider implements PersistenceProvider {
 		this.nativeQuery.add(query);
 		return this;
 	}
-
+fsfd
 
 
 	}
