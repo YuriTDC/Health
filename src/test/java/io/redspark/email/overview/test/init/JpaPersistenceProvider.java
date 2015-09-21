@@ -54,21 +54,7 @@ public class JpaPersistenceProvider implements PersistenceProvider {
 		return this;
 	}
 
-	@Override
-	public void clear() {
 
-		template.execute(new TransactionCallbackWithoutResult() {
-			@Override
-			protected void doInTransactionWithoutResult(TransactionStatus status) {
-				for (String c : commands) {
-					if (nativeQuery.contains(c)) {
-						em.createNativeQuery(c).executeUpdate();
-					} else {
-						em.createQuery(c).executeUpdate(); //TESTE
-					}
-				}
-			}
-		});
 
 	}
 }
