@@ -64,7 +64,7 @@ public class JpaPersistenceProvider implements PersistenceProvider {
 					if (nativeQuery.contains(c)) {
 						em.createNativeQuery(c).executeUpdate();
 					} else {
-						em.createQuery(c).executeUpdate();
+						em.createQuery(c).executeUpdate(); //TESTE
 					}
 				}
 			}
