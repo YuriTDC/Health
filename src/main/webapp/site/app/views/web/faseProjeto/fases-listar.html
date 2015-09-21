@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h3 class="text-center" style="color:#c9242c">Fase Projeto</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <button class="btn btn-spark pull-right" ng-disabled="btnDisabled" ng-click="novaFaseProjeto()">Nova Fase Projeto</button>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div style="margin-top:15px;">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <table class="table table-bordered" style="margin: 0 10px 0 0;">
+          <thead>
+            <tr class="headerTable">
+             <th class="th-center"><a href="">NOME</a></th>
+              <th class="th-center"><a href="">STATUS</a></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="fp in faseProjetoResolve" ng-mouseover="openPopover($index)">
+              <td align="center">{{fp.nome}}</td>
+              <td align="center">{{fp.status}}</td>
+              <td align="center">
+
+                <button class="btn btn-spark" alt="Alterar faseProjeto" title="Alterar fase Projeto" ng-disabled="btnDisabled" ng-click="editarFaseProjeto(fp)">
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </button>
+                <button class="btn btn-spark" alt="Excluir Fase Projeto" title="Excluir fase Projeto" ng-disabled="btnDisabled" ng-click="excluirFaseProjeto(fp)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row" >
+  <div class="col-sm-12 col-md-12 col-lg-12">
+    <br clear="all">
+    <hr>
+    <button class="btn btn-spark" title="Voltar" ng-disabled="btnDisabled" ui-sref="web.projeto.listar" >
+      Voltar
+    </button>
+  </div>
+</div>
+    </div>
+
+  </div>

@@ -1,0 +1,30 @@
+<div class="container">
+  <form class="form-horizontal" role="form" ng-submit="entrar()">
+
+    <div class="form-group">
+      <div class="col-lg-4 col-lg-offset-4">
+        <label for="inputMatricula">Usuario</label>
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+          <input type="text" class="form-control" id="inputMatricula" placeholder="usuario" ng-model="form.username">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-lg-4 col-lg-offset-4">
+        <label for="inputSenha">Senha</label>
+        <div class="input-group">
+          <div class="input-group-addon">@</div>
+          <input type="password" class="form-control" id="inputSenha" placeholder="senha" ng-model="form.password">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-lg-4 col-lg-offset-4">
+        <button type="submit" class="btn btn-gray btn-block">Entrar</button>
+      </div>
+    </div>
+  </form>
+</div>

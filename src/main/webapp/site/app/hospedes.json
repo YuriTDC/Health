@@ -1,0 +1,24 @@
+[{
+  "id": 1,
+  "nome": "Danilo",
+  "sexo": "M",
+  "parentesco": "Genro",
+  "nascimento": "19/07/1992",
+  "categoria": "Comerciário"
+},
+{
+  "id": 2,
+  "nome": "João",
+  "sexo": "M",
+  "parentesco": "Pai",
+  "nascimento": "01/07/1980",
+  "categoria": "Visitante"
+},
+{
+  "id": 3,
+  "nome": "XPTO",
+  "sexo": "M",
+  "parentesco": "Titular",
+  "nascimento": "01/07/1999",
+  "categoria": "Visitante"
+}]

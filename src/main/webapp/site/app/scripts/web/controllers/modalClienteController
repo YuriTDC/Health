@@ -1,0 +1,25 @@
+angular.module('emailOverviewWebApp.controllers')
+.controller 'ModalClienteController',['$scope', '$location', '$timeout', '$http', 'urlConfig', 'clientes', '$state', 'ClienteService', 'Feedback', '$modal',
+($scope, $location, $timeout, $http, urlConfig, clientes, $state, ClienteService, Feedback, $modal)->
+
+	$scope.clientes = clientes
+  $scope.btnDisabled = false
+
+  $scope.ok = ->
+    $scope.btnDisabled = true
+    ClienteService.excluir(cliente.id).then( (result) ->
+      Feedback.success 'Excluido com sucesso.'
+      $state.reload()
+      $scope.btnDisabled = false    
+    (error) ->
+      $scope.btnDisabled = false
+      Feedback.fail "Erro ao excluir cliente. #{error.data.message}"
+    )
+
+  $scope.cancel = ->
+    $modalInstance.close
+   
+  $scope.animationsEnabled = true
+
+  $scope.toggleAnimation = ->
+    $scope.animationsEnabled = !$scope.animationsEnabled

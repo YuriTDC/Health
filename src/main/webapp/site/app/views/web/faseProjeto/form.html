@@ -1,0 +1,35 @@
+<div class="container menu">
+
+  <form name="faseProjetoForm" >  
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <h3 class="text-center" style="color:#c9242c">{{tipoForm}}</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <label for="">Nome</label>
+        <input class="form-control" ng-model="faseProjeto.nome" ng-disabled="btnDisabled" type="text" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <label for="">Status</label>
+            <select ng-model="faseProjeto.status" ng-options="status.status as status.nome for status in allStatus" class="form-control" required></select>
+         </div>
+      </div>
+   
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <button class="btn btn-spark" title="Voltar" ng-disabled="btnDisabled" ui-sref="web.projeto.gerenciar.fases.listar" >
+          Voltar
+        </button>
+        <button class="btn btn-spark pull-right" ng-disabled="btnDisabled || faseProjetoForm.$invalid" ng-click="save()">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,36 @@
+<div class="container menu">
+
+  <form name="premioForm">  
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <h3 class="text-center" style="color:#c9242c">{{tipoForm}}</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <label for="">Nome</label>
+        <input class="form-control" ng-model="premio.nome"  name="premioNome" type="text" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <label for="">Valor</label>
+        <input class="form-control" ng-model="premio.valor" name="premioValor" type="number" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <button class="btn btn-spark pull-left" ng-disabled="btnDisabled" ui-sref="web.premio.listar">
+          Voltar
+        </button>
+        <button class="btn btn-spark pull-right" ng-disabled="btnDisabled || premioForm.$invalid" ng-click="save()">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </form>
+
+
+</div>

@@ -1,0 +1,87 @@
+<div class="container menu">
+
+  <form name="faseProjetoForm">  
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <h3 class="text-center" style="color:#c9242c">{{tipoForm}}</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <label for="">Nome</label>
+        <input class="form-control" ng-model="faseProjeto.nome" ng-disabled="btnDisabled" type="text">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <label for="">Status</label>
+            <select ng-model="faseProjeto.status" ng-options="status.status as status.nome for status in allStatus" class="form-control"></select>
+         </div>
+      </div>
+   
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <button class="btn btn-spark" title="Voltar" ng-disabled="btnDisabled" ui-sref="web.projeto.gerenciar.fases.listar" >
+          Voltar
+        </button>
+        <button class="btn btn-spark pull-right" ng-disabled="btnDisabled || faseProjetoForm.$invalid" ng-click="save()">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="row">
+   <div class="col-sm-12 col-md-12 col-lg-12">
+     <h3 class="text-center" style="color:#c9242c ">Sprints</h3>
+   </div>
+ </div>
+
+ <div class="row">
+   <div class="col-sm-12 col-md-12 col-lg-12">
+     <button class="btn btn-spark pull-right" ng-disabled="btnDisabled" ng-click="novaEntregaSprint()">Nova Entrega Sprint</button>
+   </div>
+ </div>
+
+ <div class="row">
+
+    <div style="margin-top:15px;">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <table class="table table-bordered" style="margin: 0 10px 0 0;">
+          <thead>
+            <tr class="headerTable">
+              <th class="th-center"><a href="">ENTREGUE</a></th>
+              <th class="th-center"><a href="">INTEGRANTES</a></th>
+              <th class="th-center"><a href="">DATA ENTREGA</a></th>
+              <th class="th-center"><a href=""></a></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="es in entregaSprintResolve" ng-mouseover="openPopover($index)">
+              <td align="center">{{es.entregue | booleanFilter}}</td>
+              <td align="center">{{es.ints.join()}}</td>
+              <td align="center">{{es.dataEntrega}}</td>
+
+              <td align="center">
+                <button class="btn btn-spark" alt="Alterar entregaSprint" title="Alterar entregaSprint" ng-disabled="btnDisabled" ng-click="editarEntregaSprint(es)">
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </button>
+                <button class="btn btn-spark" alt="Excluir entregaSprint" title="Excluir entregaSprint" ng-disabled="btnDisabled" ng-click="excluirEntregaSprint(es)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <button class="btn btn-spark pull-left" ng-disabled="btnDisabled" ui-sref="web.projeto.gerenciar.fases.listar" >
+        Voltar
+      </button>
+    </div>
+  </div>

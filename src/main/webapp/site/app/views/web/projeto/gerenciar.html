@@ -1,0 +1,14 @@
+<div class="container menu" >
+  <ul class="nav nav-tabs"> 
+    <li ui-sref-active="active">
+      <a ui-sref=".dados({id: projetoId})" >Dados</a>
+    </li>
+    <li ui-sref-active="active">
+      <a ui-sref=".colaboradores({id: projetoId})" >Colaboradores</a>
+    </li>
+    <li ui-sref-active="active">
+      <a ui-sref=".fases.listar({id: projetoId})" >Fases</a>
+    </li>
+  </ul>
+  <div ui-view></div>
+</div>

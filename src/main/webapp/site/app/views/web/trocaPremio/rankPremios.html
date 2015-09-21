@@ -1,0 +1,45 @@
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h3 class="text-center" style="color:#c9242c">PREMIOS</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-md-3 col-lg-3">
+      <input type="text" class="form-control" placeholder="Filtrar por" ng-model="filtrarPorNome"/>
+    </div>
+    <div class="col-md-offset-5 col-sm-4 col-md-4 col-lg-4 col-md-offset-5 col-sm-offset-5">
+      <select ng-model="selectFilter" ng-options="ordena for ordena in FILTRO_TROCA_ENUM" ng-init="selectFilter=FILTRO_TROCA_ENUM.RANKING" class="form-control"></select>
+    </div>
+  </div>
+<div ng-switch on = "selectFilter">
+<div class="row" >
+  
+    <div style="margin-top:15px;">
+
+    <div ng-switch-when="Ranking de premios">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <table class="table table-bordered" style="margin: 0 10px 0 0;">
+          <thead>
+            <tr class="headerTable">
+              <th class="th-center"><a href="">PREMIO</a></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="tp in trocaPremioRankResolve | filter:filtrarPorNome track by $index" ng-mouseover="openPopover($index)" ng-mouseover="openPopover($index)">
+              <td align="center">{{tp.nome}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </div>
+  </div>
+</div> 
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <button class="btn btn-spark pull-left" ng-disabled="btnDisabled" ui-sref="web.home" href="#/home">
+        Voltar
+      </button>
+    </div>
+  </div>
