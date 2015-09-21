@@ -9,7 +9,7 @@ import javax.persistence.Table;
 public class Cliente extends AbstractEntity {
 	
 	@Column( name = "NOME") 
-	private String nome;
+	private String pessoa;
 	
 	@Column( name = "EMAIL")
 	private String email;
