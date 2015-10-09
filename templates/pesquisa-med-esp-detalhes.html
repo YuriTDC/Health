@@ -1,0 +1,20 @@
+<ion-view title="{{ especialidade }}">
+  <ion-content class="has-header padding">
+    <div class="list list-inset">
+        <div class="item item-divider">
+            Filtre pelo médico
+        </div>
+        <label class="item item-input">
+            <input type="text" placeholder="Informe aqui" ng-model="filtro">
+        </label>
+    </div>
+    <div class="list list-inset item-next">
+        <a ng-repeat="med in medicos | filter:filtro" 
+           href="#/tab/pesquisa/medico-contato/{{med.id}}" class="item item-content">
+            <h2>{{ med.nome }}</h2>
+            <p>CRM {{ med.crm }}</p>
+            <p><b>{{ med.especialidades }}</b></p>
+        </a>
+    </div>
+  </ion-content>
+</ion-view>

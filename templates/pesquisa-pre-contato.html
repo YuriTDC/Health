@@ -1,0 +1,20 @@
+<ion-view title="Prestadores">
+  <ion-content class="has-header padding">
+    <div class="list list-inset">
+        <div class="item item-divider">
+            {{ prestador.descricao }}
+        </div>
+        <div class="item item-content">
+            <p><b>{{ prestador.especialidades.join(', ') }}</b></p>
+            <p><b>{{ prestador.endereco }}</b></p>
+            <p><a href="tel:{{ prestador.telefone }}"><i class="icon ion-ios7-telephone"></i> {{ prestador.telefone }}</b></a></p>
+        </div>
+    </div>
+    <div class="list list-inset">
+        <div class="item item-divider">
+            Mapa
+        </div>
+        <div class="item mapa"></div>
+    </div>
+  </ion-content>
+</ion-view>

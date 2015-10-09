@@ -1,0 +1,21 @@
+<ion-view title="Perto de mim">
+  <ion-content class="has-header padding">
+    <div class="list list-inset">
+        <div class="item item-divider">
+            {{ farmacia.descricao }}
+        </div>
+        <div class="item item-content">
+            <p><b>{{ farmacia.especialidades.join(', ') }}</b></p>
+            <p><i class="icon ion-location"></i> {{ farmacia.distancia }}</p>
+            <p>{{ farmacia.endereco }}</p>
+            <p><a href="tel:{{ farmacia.telefone }}"><i class="icon ion-ios7-telephone"></i> {{ farmacia.telefone }}</b></a></p>
+        </div>
+    </div>
+    <div class="list list-inset">
+        <div class="item item-divider">
+            Mapa
+        </div>
+        <div class="item mapa"></div>
+    </div>
+  </ion-content>
+</ion-view>

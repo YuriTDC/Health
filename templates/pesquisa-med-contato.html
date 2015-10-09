@@ -1,0 +1,27 @@
+<ion-view title="Médicos">
+  <ion-content class="has-header padding">
+    <div class="list list-inset">
+        <div class="item item-divider">
+            {{ medico.nome }}
+        </div>
+        <div class="item item-content">
+            <p>CRM {{ medico.crm }}</h2>
+            <p><b>{{ medico.especialidades.join(', ') }}</b></p>
+            <p><a href="tel:{{ medico.telefone }}"><i class="icon ion-ios7-telephone"></i> {{ medico.telefone }}</b></a></p>
+        </div>
+    </div>
+    <div class="list list-inset">
+        <div class="item item-divider">
+            Locais de trabalho
+        </div>
+        <div ng-repeat="local in medico.locais track by $index" 
+               class="item">
+            <h2>{{ local.descricao }}</h2>
+            <p>{{ local.endereco }}</h2>
+            <p><a href="tel:{{ loca.telefone }}"><i class="icon ion-ios7-telephone"></i> {{ local.telefone }}</b></a></p>
+            <p style="text-align: right;"><a class="button button-light" 
+                  href="#/tab/pesquisa/medico-contato/{{medico.id}}/{{$index}}"><i class="icon ion-map"></i> Ver mapa</a></p>
+        </div>
+    </div>
+  </ion-content>
+</ion-view>

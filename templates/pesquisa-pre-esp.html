@@ -1,0 +1,16 @@
+<ion-view title="Prestadores">
+  <ion-content class="has-header padding">
+    <div class="list list-inset">
+        <div class="item item-divider">
+            Filtre pela especialidade
+        </div>
+        <label class="item item-input">
+            <input type="text" placeholder="Informe aqui" ng-model="filtro">
+        </label>
+    </div>
+    <div class="list list-inset item-next">
+        <a ng-repeat="esp in especialidades | filter:filtro" 
+           href="#/tab/pesquisa/prestador-esp/{{esp}}" class="item item-content">{{esp}}</a>
+    </div>
+  </ion-content>
+</ion-view>

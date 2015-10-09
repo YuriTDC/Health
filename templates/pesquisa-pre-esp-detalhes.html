@@ -1,0 +1,24 @@
+<ion-view title="{{ especialidade }}">
+  <ion-content class="has-header padding">
+    <div class="list list-inset">
+        <div class="item item-divider">
+            Filtre pelo prestador
+        </div>
+        <label class="item item-input">
+            <input type="text" placeholder="Informe aqui" ng-model="filtro">
+        </label>
+    </div>
+    <div class="list list-inset item-next">
+        <div ng-repeat="pre in prestadores | filter:filtro" 
+            class="item item-content">
+            <h2>{{ pre.descricao }}</h2>
+            <p><b>{{ pre.especialidades }}</b></p>
+            <p><b>{{ pre.endereco }}</b></p>
+            <p><a href="tel:{{ pre.telefone }}"><i class="icon ion-ios7-telephone"></i> {{ pre.telefone }}</b></a></p>
+            <p style="text-align: right;"><a class="button button-light" 
+                  href="#/tab/pesquisa/prestador-contato/{{pre.id}}"><i class="icon ion-map"></i> Ver mapa</a></p>
+
+        </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view title="Perto de mim">
+  <ion-content class="has-header padding">
+    <div class="list list-inset">
+        <div class="item item-divider">
+            Filtre pela farmácias
+        </div>
+        <label class="item item-input">
+            <input type="text" placeholder="Informe aqui" ng-model="filtro">
+        </label>
+    </div>
+    <div class="list list-inset item-next">
+        <div ng-repeat="far in farmacias | filter:filtro" 
+            class="item item-content">
+            <h2>{{ far.descricao }}</h2>
+            <p><b>{{ far.especialidades }}</b></p>
+            <p><i class="icon ion-location"></i> {{ far.distancia }}</p>
+            <p>{{ far.endereco }}</p>
+            <p><a href="tel:{{ far.telefone }}"><i class="icon ion-ios7-telephone"></i> {{ far.telefone }}</b></a></p>
+            <p style="text-align: right;"><a class="button button-light" 
+                  href="#/tab/pesquisa/farmacia-contato/{{far.id}}"><i class="icon ion-map"></i> Ver mapa</a></p>
+
+        </div>
+    </div>
+  </ion-content>
+</ion-view>
+
+
