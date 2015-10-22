@@ -6,7 +6,7 @@
         </div>
         <div class="item item-content">
             <p>CRM {{ medico.crm }}</h2>
-            <p><b>{{ medico.especialidades.join(', ') }}</b></p>
+            <p><b>{{ medico.especialidades.join(',') }}</b></p>
             <p><a href="tel:{{ medico.telefone }}"><i class="icon ion-ios7-telephone"></i> {{ medico.telefone }}</b></a></p>
         </div>
     </div>
@@ -19,11 +19,16 @@
             <p><a href="tel:{{ local.telefone }}"><i class="icon ion-ios7-telephone"></i> {{ local.telefone }}</b></a></p>
         </div>
     </div>
-    <div class="list list-inset">
-        <div class="item item-divider">
-            Mapa
-        </div>
-        <div class="item mapa"></div>
-    </div>
+
+<!--     Show map 
+<ion-pane>
+  <ion-header-bar class="bar-stable">
+    <h1 class="title">Ionic Blank Starter</h1>
+  </ion-header-bar>
+  <ion-content ng-controller="MapController">
+  </ion-content>
+</ion-pane> -->
+
+
   </ion-content>
 </ion-view>

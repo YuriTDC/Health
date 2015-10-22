@@ -1,26 +1,43 @@
-var carregaMapa = function ( elemento, latlang ) {
-    $( elemento ).gmap3({
-         map:{
-            options:{
-             center: latlang,
-             zoom:13,
-             mapTypeId: google.maps.MapTypeId.ROADMAP,
-             mapTypeControl: true,
-             mapTypeControlOptions: {
-               style: google.maps.MapTypeControlStyle.DEFAULT
-             },
-             navigationControl: true,
-             scrollwheel: true,
-             streetViewControl: false
-            }
-         },
-         marker:{
-            latLng: latlang
-        }
-    });
-};
-
 angular.module('health.controllers', [])
+
+.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoading) {
+     
+    document.addEventListener("deviceready", onDeviceReady, false);
+     
+    function onDeviceReady() {
+         
+        $ionicLoading.show({
+            template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
+        });
+         
+        var posOptions = {
+            enableHighAccuracy: true,
+            timeout: 20000,
+            maximumAge: 0
+        };
+        $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+            var lat  = position.coords.latitude;
+            var long = position.coords.longitude;
+             
+            var myLatlng = new google.maps.LatLng(lat, long);
+             
+            var mapOptions = {
+                center: myLatlng,
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };          
+             
+            var map = new google.maps.Map(document.getElementById("map"), mapOptions);          
+             
+            $scope.map = map;   
+            $ionicLoading.hide();           
+             
+        }, function(err) {
+            $ionicLoading.hide();
+            console.log(err);
+        });
+    }               
+})
 
 .controller('LoginCtrl', function($scope) {
 })
@@ -66,11 +83,7 @@ angular.module('health.controllers', [])
     $scope.medico = Medicos.get($stateParams.medId || 1);
     $scope.local = $scope.medico.locais[ $stateParams.mapaId || 0 ];
     
-    $scope.$on('$viewContentLoaded', function() {
-        $timeout(function () {
-            carregaMapa( '.mapa', $scope.local.latlang );
-        }, 500);
-    });
+
 })
 //-----------------------------------------------------------
 .controller('PesqPrestadorEspCtrl', function($scope, Prestadores) {

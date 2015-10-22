@@ -1,4 +1,4 @@
-angular.module('health', ['ionic', 'health.controllers', 'health.services'])
+angular.module('health', ['ionic', 'health.controllers', 'health.services', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -8,6 +8,27 @@ angular.module('health', ['ionic', 'health.controllers', 'health.services'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+  });
+})
+
+.run(function($ionicPlatform, $ionicPopup) {
+  $ionicPlatform.ready(function() {
+
+    // Verificar conexao com a intergent
+    if(window.Connection) {
+      if(navigator.connection.type == Connection.NONE) {
+        $ionicPopup.confirm({
+          title: 'No Internet Connection',
+          content: 'Desculpe, não foi possivel conectar. Por favor reconecte-se e tente novamente.'
+        })
+        .then(function(result) {
+          if(!result) {
+            ionic.Platform.exitApp();
+          }
+        });
+      }
+    }
+
   });
 })
 
