@@ -1,42 +1,42 @@
 angular.module('health.controllers', [])
 
-.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoading) {
+.controller('MapCtrl', function($scope, $state, $cordovaGeolocation) {
+  var options = {timeout: 10000, enableHighAccuracy: true};
+
+  $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+ 
+    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+ 
+    var mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+ 
+    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    //Aguarda ate o map ser renderizado
+    google.maps.event.addListenerOnce($scope.map, 'idle', function(){
      
-    document.addEventListener("deviceready", onDeviceReady, false);
+      var marker = new google.maps.Marker({
+          map: $scope.map,
+          animation: google.maps.Animation.DROP,
+          position: latLng
+      });      
      
-    function onDeviceReady() {
-         
-        $ionicLoading.show({
-            template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
-        });
-         
-        var posOptions = {
-            enableHighAccuracy: true,
-            timeout: 20000,
-            maximumAge: 0
-        };
-        $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-            var lat  = position.coords.latitude;
-            var long = position.coords.longitude;
-             
-            var myLatlng = new google.maps.LatLng(lat, long);
-             
-            var mapOptions = {
-                center: myLatlng,
-                zoom: 16,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };          
-             
-            var map = new google.maps.Map(document.getElementById("map"), mapOptions);          
-             
-            $scope.map = map;   
-            $ionicLoading.hide();           
-             
-        }, function(err) {
-            $ionicLoading.hide();
-            console.log(err);
-        });
-    }               
+      var infoWindow = new google.maps.InfoWindow({
+          content: "Teste pop-up"
+      });
+     
+      google.maps.event.addListener(marker, 'click', function () {
+          infoWindow.open($scope.map, marker);
+      });
+     
+    });
+ 
+  }, function(error){
+    console.log("Não foi possivel localizar sua posição... :(");
+  });
 })
 
 .controller('LoginCtrl', function($scope) {

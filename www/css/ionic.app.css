@@ -1915,6 +1915,15 @@ $dark:                            #444 !default;
 .ion-social-buffer-outline:before {
   content: "\f228"; }
 
+.scroll {
+    height: 100%;
+}
+ 
+#map {
+    width: 100%;
+    height: 100%;
+}
+
 .ion-social-chrome:before {
   content: "\f4db"; }
 

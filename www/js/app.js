@@ -234,7 +234,11 @@ angular.module('health', ['ionic', 'health.controllers', 'health.services', 'ngC
       }
     })
 
-
+    .state('map', {
+      url: '/maps',
+      templateUrl: 'templates/map.html',
+      controller: 'MapCtrl'
+    })
 
   // Caso nao encontre alguma pagina
   $urlRouterProvider.otherwise('/login/form');
