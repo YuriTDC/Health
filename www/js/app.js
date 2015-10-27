@@ -1,4 +1,4 @@
-angular.module('health', ['ionic', 'health.controllers', 'health.services', 'ngCordova'])
+angular.module('health', ['ionic', 'health.controllers', 'health.services', 'uiGmapgoogle-maps', 'ngCordova', 'ngGPlaces'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -14,7 +14,7 @@ angular.module('health', ['ionic', 'health.controllers', 'health.services', 'ngC
 .run(function($ionicPlatform, $ionicPopup) {
   $ionicPlatform.ready(function() {
 
-    // Verificar conexao com a intergent
+    // Verificar conexao com a internet
     if(window.Connection) {
       if(navigator.connection.type == Connection.NONE) {
         $ionicPopup.confirm({
@@ -235,10 +235,10 @@ angular.module('health', ['ionic', 'health.controllers', 'health.services', 'ngC
     })
 
     .state('map', {
-      url: '/maps',
-      templateUrl: 'templates/map.html',
-      controller: 'MapCtrl'
-    })
+        url: '/',
+        templateUrl: 'templates/map.html',
+        controller: 'MapCtrl'
+    });
 
   // Caso nao encontre alguma pagina
   $urlRouterProvider.otherwise('/login/form');

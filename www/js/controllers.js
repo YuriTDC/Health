@@ -1,42 +1,69 @@
 angular.module('health.controllers', [])
 
-.controller('MapCtrl', function($scope, $state, $cordovaGeolocation) {
-  var options = {timeout: 10000, enableHighAccuracy: true};
+.controller('MapCtrl', function($scope, $cordovaGeolocation, uiGmapGoogleMapApi, uiGmapIsReady, ngGPlacesAPI) {
+  
+  var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    
+    // pega sua posicao atual - latLong
+    $cordovaGeolocation
+      .getCurrentPosition(posOptions)
+      .then(function (position) {
+        $scope.lat  = position.coords.latitude;
+        $scope.long = position.coords.longitude;
 
-  $cordovaGeolocation.getCurrentPosition(options).then(function(position){
- 
-    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
- 
-    var mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+        // pega os locais perto de vc
+        ngGPlacesAPI.nearbySearch({
+            types: ['doctor'],
+             placeDetailsKeys: ['formatted_address', 'formatted_phone_number',
+             'reference', 'website'],
+            latitude: $scope.lat,
+            longitude: $scope.long
+        }).then(
+            function(data){
+                $scope.places = data;
+                return data;
+            });
+
+        // renderiza novo mapa baseado na sua geoLocation
+        uiGmapGoogleMapApi.then(function(maps){
+
+          $scope.control = {};
+
+          $scope.myMap = {
+            center: {
+              latitude: $scope.lat,
+              longitude: $scope.long
+            }, 
+            zoom : 16,
+          };
+          $scope.myMarker = {
+            id: 1, 
+            coords: {
+              latitude: $scope.lat,
+              longitude: $scope.long
+            }, 
+            options: {draggable:false}
+          };
+
+        });
+
+      }, function(err) {
+        // error
+      });
+
+    $scope.getMap = function() {
+        var map1 = $scope.control.getGMap();
+        console.log('map:', map1);
+        console.log('locais:', $scope.places);
     };
- 
-    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-    //Aguarda ate o map ser renderizado
-    google.maps.event.addListenerOnce($scope.map, 'idle', function(){
-     
-      var marker = new google.maps.Marker({
-          map: $scope.map,
-          animation: google.maps.Animation.DROP,
-          position: latLng
-      });      
-     
-      var infoWindow = new google.maps.InfoWindow({
-          content: "Teste pop-up"
-      });
-     
-      google.maps.event.addListener(marker, 'click', function () {
-          infoWindow.open($scope.map, marker);
-      });
-     
+    uiGmapIsReady.promise(1).then(function(instances) {
+        instances.forEach(function(inst) {
+        var map = inst.map;
+        var uuid = map.uiGmap_id;
+        var mapInstanceNumber = inst.instance; 
+        });
     });
- 
-  }, function(error){
-    console.log("Não foi possivel localizar sua posição... :(");
-  });
 })
 
 .controller('LoginCtrl', function($scope) {

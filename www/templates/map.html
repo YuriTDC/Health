@@ -1,5 +1,37 @@
-<ion-view>
-    <ion-content>
-        <div id="map" data-tap-disabled="true"></div>
-    </ion-content>
+<ion-view view-title="Mapas">
+  <ion-content class="padding">
+
+  <div class="card">
+      <div class="item">
+        <ui-gmap-google-map center="myMap.center" zoom="myMap.zoom" draggable="true" control="control" options="options">
+            <ui-gmap-marker coords="myMarker.coords" options="myMarker.options" events="" idkey="myMarker.id">
+            </ui-gmap-marker>
+        </ui-gmap-google-map>
+
+      </div>
+
+        <div class="item">
+          Locais perto de vc: 
+        </div>
+
+        <div ng-repeat="place in places">
+          <div class="item item-divider">
+            {{place.name}}
+          </div>
+          <div class="item">
+            {{place.vicinity}}
+          </div>
+          <div class="item">
+            {{place.details.formatted_phone_number}}
+          </div>
+        </div>
+    </div>
+    
+
+     <div class="padding">
+           <button ng-click="getMap()" class="button button-positive button-block button-outline">Console Log - Maps </button>
+        </div>
+
+
+  </ion-content>
 </ion-view>
