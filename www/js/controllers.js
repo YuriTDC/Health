@@ -1,6 +1,6 @@
 angular.module('health.controllers', [])
 
-.controller('MapCtrl', function($scope, $cordovaGeolocation, uiGmapGoogleMapApi, uiGmapIsReady, ngGPlacesAPI) {
+.controller('MapCtrl', function($scope, $timeout, $cordovaGeolocation, uiGmapGoogleMapApi, uiGmapIsReady, ngGPlacesAPI) {
   
   var posOptions = {timeout: 10000, enableHighAccuracy: false};
     
@@ -13,16 +13,21 @@ angular.module('health.controllers', [])
 
         // pega os locais perto de vc
         ngGPlacesAPI.nearbySearch({
-            types: ['doctor'],
-             placeDetailsKeys: ['formatted_address', 'formatted_phone_number',
-             'reference', 'website'],
+            types: ['pharmacy'],
             latitude: $scope.lat,
-            longitude: $scope.long
+            longitude: $scope.long,
         }).then(
             function(data){
-                $scope.places = data;
-                return data;
+              setPlaces(data);
             });
+
+        /*ngGPlacesAPI.placeDetails({
+            reference:"CnRkAAAAZvRRKss3vAZtQPl8B-88rqa0fSiNbmlUWzprk4IKVmc-AK3twL3Olw9mcR30JHdZGkX9gyGqJpTWVWQkga3kWlsJOy4_Pg4WxDWfLVzDO80Pl6NpBRgEd_43CYp_1EKpHyAVR8tQPIkJcbJGiKF2XRIQocOdx7FrLOGuBhKzoP5PRxoUnLr4D20Hj5K88mtlidce-V6fSNE"
+        }).then(
+            function (details) {
+              $scope.details = details;
+              return details;
+        });*/ 
 
         // renderiza novo mapa baseado na sua geoLocation
         uiGmapGoogleMapApi.then(function(maps){
@@ -50,6 +55,29 @@ angular.module('health.controllers', [])
       }, function(err) {
         // error
       });
+
+    var setPlaces = function(places){
+      $scope.places = places;
+      $scope.getDetails();
+    };
+
+    var fetchDetail = function(place){
+
+      ngGPlacesAPI.placeDetails({
+        reference: place.reference
+      }).then(
+        function (details) {
+          place.details = details;
+      });
+    };
+
+    $scope.getDetails = function(){
+      _($scope.places).forEach(function(place){
+        $timeout(function(){
+          fetchDetail(place);
+        });
+      });
+    };
 
     $scope.getMap = function() {
         var map1 = $scope.control.getGMap();

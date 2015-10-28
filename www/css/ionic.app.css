@@ -760,8 +760,6 @@ $dark:                            #444 !default;
 .ion-gear-b:before {
   content: "\f13e"; }
 
-.angular-google-map-container { height: 200px; }
-
 .ion-grid:before {
   content: "\f13f"; }
 
