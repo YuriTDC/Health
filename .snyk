@@ -1,0 +1,31 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:hawk:20160119':
+    - gulp-sass > node-sass > pangyp > request > hawk:
+        patched: '2022-10-07T22:10:49.014Z'
+  'npm:http-signature:20150122':
+    - gulp-sass > node-sass > pangyp > request > http-signature:
+        patched: '2022-10-07T22:10:49.014Z'
+  'npm:minimatch:20160620':
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2022-10-07T22:10:49.014Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2022-10-07T22:10:49.014Z'
+    - gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2022-10-07T22:10:49.014Z'
+    - gulp-sass > node-sass > pangyp > minimatch:
+        patched: '2022-10-07T22:10:49.014Z'
+    - gulp-sass > node-sass > pangyp > glob > minimatch:
+        patched: '2022-10-07T22:10:49.014Z'
+  'npm:request:20160119':
+    - gulp-sass > node-sass > pangyp > request:
+        patched: '2022-10-07T22:10:49.014Z'
+  'npm:tar:20151103':
+    - gulp-sass > node-sass > pangyp > tar:
+        patched: '2022-10-07T22:10:49.014Z'
+  'npm:tunnel-agent:20170305':
+    - gulp-sass > node-sass > pangyp > request > tunnel-agent:
+        patched: '2022-10-07T22:10:49.014Z'
